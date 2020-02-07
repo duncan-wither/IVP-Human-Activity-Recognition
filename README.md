@@ -8,7 +8,7 @@ Mario Emilio Manca and Duncan Wither
 
 [1] - https://ieee-dataport.org/open-access/mex-multi-modal-exercise-dataset
 
-###TODOs
+### TODOs
 - [ ] Visualise Data
 - [ ] Create Deterministic Method
     - [x] Create DTW Function
