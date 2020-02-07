@@ -17,5 +17,6 @@ All files bar __init__.py and dtw.py are for/from testing
   - [ ] Reduce search space by reducing the max width of search
   - [ ] Add the numerosity reduction mentioned in the paper [optional]
   - [ ] Improve the speed of the path-finding algorithm.
+  - [ ] Implement Numba for speedups?
 - [x] Develop DTW function into module.
  

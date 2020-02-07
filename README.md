@@ -15,7 +15,8 @@ Mario Emilio Manca and Duncan Wither
         - [x] Create DTW Module
         - [ ] Improve Speed
     - [ ] Create kNN Function
-        - [ ] Create Module
+        - [X] Create basic kNN function
+        - [ ] Convert to Module
         - [ ] Test Module
-        - [ ] Check Speed
+        - [ ] Check Speed and improve if needed.
 - [ ] Create DL Method
