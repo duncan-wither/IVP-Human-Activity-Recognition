@@ -1,5 +1,21 @@
-Human Activity Recognition Using Multi-Modal Dataset
+# Multi-modal Human Activity Recognition
+Human Activity Recognition (HAR) using the Multi-Modal Data-set [1]
 
-For the EE581 - Image and Video Processing Class at Stratclyde University.
+Looks at comparing the results between a deep learning method (MC-DNN?) and kNN with DTW, as part of an assignment for 
+the EE581 - Image and Video Processing Class at Strathclyde University.
 
 Mario Emilio Manca and Duncan Wither
+
+[1] - https://ieee-dataport.org/open-access/mex-multi-modal-exercise-dataset
+
+###TODOs
+- [ ] Visualise Data
+- [ ] Create Deterministic Method
+    - [x] Create DTW Function
+        - [x] Create DTW Module
+        - [ ] Improve Speed
+    - [ ] Create kNN Function
+        - [ ] Create Module
+        - [ ] Test Module
+        - [ ] Check Speed
+- [ ] Create DL Method
