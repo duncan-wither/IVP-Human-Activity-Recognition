@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-''' knn.py
+""" knn.py
 Created by slam at 07/02/2020
 
 Description: k-Nearest Neighbour module.
-'''
+"""
 # LIBS
 ## Default Libs
 import pickle,random
@@ -56,8 +56,12 @@ for t_val in range(ex_no*pat_no):
     # Finding some form of cost function
     #costs[t_val][1] = random.random() #example cost function
     #print(training_set[t_val][0])
-    costs[t_val][1] = dtw.dtw_cost(training_set[t_val][0],test_set)
+    # using the DTW for cost
+    MAP = dtw.create_map(training_set[t_val][0],test_set)
+    PATH = dtw.dtw_path(MAP)
+    costs[t_val][1] = dtw.dtw_cost(MAP,PATH)
     #print(costs[t_val][1])
+    print(100*(t_val+1)/(ex_no*pat_no),'% Done')
     
 #Sorting Costs
 costs = costs[costs[:,1].argsort()]

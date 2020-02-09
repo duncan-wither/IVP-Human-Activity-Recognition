@@ -55,8 +55,10 @@ calc_MAP = False
 # creating an array for the map
 # rows is p1, cols is p2
 if calc_MAP:
+    #MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals=-0.1)
     MAP1 = create_map(p1ex1, p2ex1)
     print('Found Map 1')
+    #MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals=-0.1)
     MAP2 = create_map(p1ex2, p2ex1)
     print('Found Map 2')
     
@@ -72,12 +74,12 @@ else:
     f.close()
 
 # converting map to image
-MAP1_img = 255 * (MAP1 / MAP1.max())
-MAP1_img[len(p1ex1) - 1, 0] = 1  # Start Point
-MAP1_img[0, len(p2ex1) - 1] = 1  # End Point
+# having uniform colours between requires same scale factor
+img_min = min(MAP1.min(),MAP2.min())
+img_max = max(MAP1.max(),MAP2.max())
+MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
+MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
 cv2.imwrite('test/DTW1_dc.png', MAP1_img)
-
-MAP2_img = 255 * (MAP2 / MAP2.max())
 cv2.imwrite('test/DTW2_dc.png', MAP2_img)
 
 # Pathfinding

@@ -67,9 +67,13 @@ print('Found Map 1')
 MAP2 = create_map(p1ex1, p2ex1)
 print('Found Map 2')
 
+
 # converting map to image
-MAP1_img = 255 * ((MAP1-MAP1.min())/ (MAP1.max()-MAP1.min() ))
-MAP2_img = 255 * ((MAP2 - MAP2.min()) / (MAP2.max() - MAP2.min()))
+# having uniform colours between requires same scale factor
+img_min = min(MAP1.min(),MAP2.min())
+img_max = max(MAP1.max(),MAP2.max())
+MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
+MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
 
 # Pathfinding
 print('Finding Paths')

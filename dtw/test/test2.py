@@ -75,7 +75,7 @@ if calc_MAP:
     #t_2 = time.time()
     #print('Quick Map took:',t_1-t_0,'     Normal Map took:',t_2-t_1)
     print('Found Map 1')
-    MAP2 = create_map(p1ex2, p2ex1)
+    MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals = -0.1)
     print('Found Map 2')
     # Saving MAPs
     f = open('test/MAP_ac.pckl', 'wb')
@@ -89,10 +89,12 @@ else:
     f.close()
 
 # converting map to image
-MAP1_img = 100 * ((MAP1-MAP1.min())/ (MAP1.max()-MAP1.min() ))
+# having uniform colours between requires same scale factor
+img_min = min(MAP1.min(),MAP2.min())
+img_max = max(MAP1.max(),MAP2.max())
+MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
+MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
 cv2.imwrite('test/DTW1_ac.png', MAP1_img)
-
-MAP2_img = 255 * ((MAP2-MAP2.min())/ (MAP2.max()-MAP2.min() ))
 cv2.imwrite('test/DTW2_ac.png', MAP2_img)
 
 # Pathfinding
@@ -141,3 +143,8 @@ print('DTW cost 1 = ', DTW_cost_1)
 
 DTW_cost_2 = dtw_cost(MAP2, path2)
 print('DTW cost 2 = ', DTW_cost_2)
+
+if DTW_cost_1<DTW_cost_2:
+    print('Sample is closer to first value (exercise 1)')
+else:
+    print('Sample is closer to second value (exercise 2)')
