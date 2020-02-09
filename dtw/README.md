@@ -8,7 +8,8 @@ dtw_path
 dtw_
 ## Other Files
 All files bar __init__.py and dtw.py are for/from testing
- - test.py - Testing function using the MEx Data set.
+ - test.py - Testing function using the MEx depth camera data.
+ - test2.py - Testing function using the MEx accelerometer data.
  - MAP.pckl - Pickle of the two dtw_maps generates
  - PATH.pckl - Pickle of the two paths created from these paths.
  - PNG files - Images of the DTW function path
