@@ -56,8 +56,8 @@ p2ex1 = pd.read_csv('../../MEx Dataset/Dataset/act/02/01_act_1.csv').iloc[:, 1:]
 
 # Need to reduce these down as they are polled every 0.01s, maybe convert to 10ths of a second.
 print("Downsapling")
-p1ex1 = down_sample(p1ex1, 100)
-p2ex1 = down_sample(p2ex1, 100)
+p1ex1 = down_sample(p1ex1, 10)
+p2ex1 = down_sample(p2ex1, 10)
 print("Done!")
 
 # creating an array for the map
