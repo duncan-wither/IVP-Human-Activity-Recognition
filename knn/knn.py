@@ -16,14 +16,14 @@ import pandas as pd
 from scipy import stats
 
 ## Custom Libs
-sys.path.append('../../') #enables seeing the libs above
+#sys.path.append('../../') #(for testing) enables seeing the libs above
 import dtw
 
 __author__ = "Duncan Wither"
 __copyright__ = "Copyright 2020, Duncan Wither"
 __credits__ = ["Duncan Wither"]
 __license__ = ""
-__version__ = "1.0"
+__version__ = "1.1"
 __maintainer__ = "Duncan Wither"
 __email__ = ""
 __status__ = "Prototype"
@@ -45,7 +45,7 @@ def down_sample(one_d_array, factor):
     # take the average
     return np.true_divide(ds_array0, factor)
 
-def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,verbose = True, ex_str='act'):
+def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,verbose = True, ex_str='act', pre_str=''):
     #give pairs of patients and exercises, and a pair for the testing
     #take mode from top k values
     #optionally down sample.
@@ -70,8 +70,8 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,ve
         ex_str1 = 'act'
         ex_str2 = 'act'
     
-    base_str_1 = '../../MEx Dataset/Dataset/'+ex_str+'/'
-    base_str_2 = '_'+ex_str+'_1.csv'
+    base_str_1 = pre_str + 'MEx Dataset/Dataset/'+ex_str1+'/'
+    base_str_2 = '_'+ex_str2+'_1.csv'
     
     #Creating the training set array
     for i in range(no_of_train_sets):
@@ -90,8 +90,11 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,ve
             data_set = pd.read_csv(data_set_str).iloc[:, 1:].to_numpy(dtype=float)
         
         training_set.append([data_set, exercise*1.0])
-
-    test_set_str = '../../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(pat_ex_pair_test[0], pat_ex_pair_test[1])
+    
+    #for testing
+    num_str_1 = '{:0>2d}'.format(pat_ex_pair_test[0])
+    num_str_2 = '{:0>2d}'.format(pat_ex_pair_test[1])
+    test_set_str = base_str_1 + num_str_1 + '/' + num_str_2 + base_str_2
     
     if down_sample_rate > 1:
         test_set = down_sample(pd.read_csv(test_set_str).iloc[:, 1:].to_numpy(dtype=float), down_sample_rate)
@@ -104,7 +107,6 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,ve
     for t_val in range(no_of_train_sets):
         # Storing Exercise number
         costs[t_val][0] = training_set[t_val][1]
-        
         # Finding some form of cost function
         ## Random Cost
         # costs[t_val][1] = random.random() #example cost function
@@ -117,8 +119,8 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,ve
         if verbose:
             print('Finding Costs is {:6.2f}% Done'.format(100 * (t_val + 1) / no_of_train_sets))
 
-        # Sorting Costs
-        costs = costs[costs[:, 1].argsort()]
+    # Sorting Costs
+    costs = costs[costs[:, 0].argsort()]
         
     return costs
     
@@ -131,9 +133,9 @@ def pick_nn(cost_array, k, verbose = True):
         
     return nearest_neighbor
 
-def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,verbose = True, ex_str='act'):
-    costs = find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate,verbose, ex_str)
-    nn = sort_costs(costs, k)
+def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,verbose = True, ex_str='act', pre_str=''):
+    costs = find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate,verbose, ex_str, pre_str)
+    nn = pick_nn(costs, k)
     return nn
     
     

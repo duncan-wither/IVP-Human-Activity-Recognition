@@ -3,5 +3,5 @@
 lib64
 pyvenv.cfg
 /MEx Dataset/**
-/dtw/__pycache__/__init__.cpython-37.pyc
-/dtw/__pycache__/dtw.cpython-37.pyc
+
+
