@@ -45,7 +45,7 @@ def down_sample(one_d_array, factor):
     # take the average
     return np.true_divide(ds_array0, factor)
 
-def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,verbose = True):
+def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate = 1,verbose = True, ex_str='act'):
     #give pairs of patients and exercises, and a pair for the testing
     #take mode from top k values
     #optionally down sample.
@@ -53,11 +53,35 @@ def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,ve
     no_of_train_sets = len(pat_ex_pair_list_train)
     training_set = []
     
+    #Setting up which exercise to use
+    if ex_str == 'act':
+        ex_str1 = 'act'
+        ex_str2 = 'act'
+    elif ex_str ==  'acw':
+        ex_str1 = 'acw'
+        ex_str2 = 'acw'
+    elif ex_str == 'dc':
+        ex_str1 = 'dc_0.05_0.05'
+        ex_str2 = 'dc'
+    elif ex_str == 'pm':
+        ex_str1 = 'pm_1.0_1.0'
+        ex_str2 = 'pm'
+    else: #default to act
+        ex_str1 = 'act'
+        ex_str2 = 'act'
+    
+    base_str_1 = '../../MEx Dataset/Dataset/'+ex_str+'/'
+    base_str_2 = '_'+ex_str+'_1.csv'
+    
     #Creating the training set array
     for i in range(no_of_train_sets):
         patient = pat_ex_pair_list_train[i][0]
         exercise = pat_ex_pair_list_train[i][1]
-        data_set_str = '../../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(patient,exercise)
+        num_str_1 = '{:0>2d}'.format(patient)
+        num_str_2 = '{:0>2d}'.format(exercise)
+        
+        data_set_str = base_str_1 + num_str_1 + '/'+num_str_2+base_str_2
+        #'./../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(patient,exercise)
         
         if down_sample_rate>1:
             data_set = down_sample(pd.read_csv(data_set_str).iloc[:, 1:].to_numpy(dtype=float), down_sample_rate)
@@ -93,18 +117,28 @@ def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,ve
         if verbose:
             print('Finding Costs is {:6.2f}% Done'.format(100 * (t_val + 1) / no_of_train_sets))
 
-    # Sorting Costs
-    costs = costs[costs[:, 1].argsort()]
-    #if verbose:
-    #    print(costs)
+        # Sorting Costs
+        costs = costs[costs[:, 1].argsort()]
+        
+    return costs
     
+
+def pick_nn(cost_array, k, verbose = True):
     #Getting the mode of the k top matches
-    nearest_neighbor = int(stats.mode(costs[0:k, 0])[0][0])
+    nearest_neighbor = int(stats.mode(cost_array[0:k, 0])[0][0])
     if verbose:
         print('Thus it is most similar to exercise {}'.format(nearest_neighbor))
         
     return nearest_neighbor
 
+def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate = 1,verbose = True, ex_str='act'):
+    costs = find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate,verbose, ex_str)
+    nn = sort_costs(costs, k)
+    return nn
+    
+    
+    
+    
 '''
 from "https://towardsdatascience.com/machine-learning-basics-with-the-k-nearest-neighbors-algorithm-6a6e71d01761"
 The KNN Algorithm

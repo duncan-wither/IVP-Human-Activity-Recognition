@@ -3,10 +3,13 @@ Implemented dynamic time warping (DTW) function based on the example of DTW form
 Classification Using Numerosity Reduction" by Xi et al.
 
 ## Functions
- - `dtw_map`
- - `dtw_path`
- - `create_map` [legacy]
- - `create_quick_map`
+ - `create_quick_map` creates a limited map between the two datasets, improving the speed of creation, and of path
+ finding.
+ - `create_map` [legacy] same as create_quick_map, but creates the full map, taking more time in the creation and when 
+ searching a path.
+ - `dtw_path` finds the lowest cost path using the `pathfinding` module.
+ - `dtw_cost` calculates the cost of a given path.
+
 ## Other Files
 All files bar `__init__.py` and `dtw.py` are for/from testing
  - `test_dtw_1.py` - Testing function using the MEx depth camera data.
