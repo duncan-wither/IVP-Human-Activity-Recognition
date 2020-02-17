@@ -13,18 +13,27 @@ Mario Emilio Manca and Duncan Wither
    - This doesnt appear to be working very effectively at the moment.
  - `tests/` contains all the testing files for the functions.
 
-### TODOs
- - [ ] Visualise Data
+### Key TODOs
+**Bold** is currently active / important problems.
+ - [ ] **Visualise Data**
  - [ ] Create Deterministic Method
    - [x] Create DTW Function
-     - [x] Create DTW Module
-     - [ ] Improve Speed
-   - [ ] Create kNN Function
-     - [X] Create basic kNN function
-     - [X] Convert to Module
-     - [X] Test Module
-     - [ ] Check Speed and improve if needed.
+   - [X] Create kNN Function
    - [ ] Integrate for multi modal data.
+     - [ ] **How to use kNN results for multimodal Data?**
+     - [ ] **How to compare the 2D arrays (dc+pm) in the DTW?**
  - [ ] Evaluate Deterministic Method
  - [ ] Create DL Method
+   - [ ] **Create Working feature Extractor**
+   - [ ] Create MLP classifier
  - [ ] Evaluate DL Method
+ 
+ ### Other info
+ - Libraries required for the python code:
+   - pandas
+   - numpy
+   - scipy
+   - pathfinding
+   - tensorflow
+     - version 2.0.0 and 2.1.0 have [memory issues](https://github.com/tensorflow/tensorflow/issues/35030)
+   - matplotlib

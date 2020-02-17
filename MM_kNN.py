@@ -23,15 +23,23 @@ __maintainer__ = "Duncan Wither"
 __email__ = ""
 __status__ = "Prototype"
 
-list_acw = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), down_sample_rate = 10, ex_str='acw')
-list_act = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), down_sample_rate = 10, ex_str='act')
-list_dc = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), down_sample_rate = 1, ex_str='dc')
-list_pm = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), down_sample_rate = 1, ex_str='pm')
+list_acw = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), verbose = 0,down_sample_rate = 10, ex_str='acw')
+print('List 1 created')
+list_act = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), verbose = 0,down_sample_rate = 10, ex_str='act')
+print('List 2 created')
+list_dc = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), verbose = 0,down_sample_rate = 1, ex_str='dc')
+print('List 3 created')
+list_pm = knn.find_costs([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), verbose = 0, down_sample_rate = 1, ex_str='pm')
+print('List 4 created')
 
 #saving the results
-f = open('mm_knn.pckl', 'rb')
+f = open('mm_knn.pckl', 'wb')
 pickle.dump([list_acw, list_act,list_dc,list_pm], f)
 f.close()
+
+## THIS IS WHERE THE RESULTS OFF THIS NEED COMBINED IN SOME FORM!
+# Initial attempts are shown below,
+# Also the simple mode that'd be used is implemented in the kNN module.
 
 k=5
 # for each array take the k top results, concatenate, and then find the mode.
