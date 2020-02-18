@@ -3,5 +3,6 @@
 lib64
 pyvenv.cfg
 /MEx Dataset/**
-
+__pycache__/
+*.py[cod]
 

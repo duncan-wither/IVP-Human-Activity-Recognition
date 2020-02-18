@@ -67,13 +67,12 @@ print('Found Map 1')
 MAP2 = create_map(p1ex1, p2ex1)
 print('Found Map 2')
 
-
 # converting map to image
 # having uniform colours between requires same scale factor
-img_min = min(MAP1.min(),MAP2.min())
-img_max = max(MAP1.max(),MAP2.max())
-MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
-MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
+img_min = min(MAP1.min(), MAP2.min())
+img_max = max(MAP1.max(), MAP2.max())
+MAP1_img = 255 * ((MAP1 - img_min) / (img_max - img_min))
+MAP2_img = 255 * ((MAP2 - img_min) / (img_max - img_min))
 
 # Pathfinding
 print('Finding Paths')
@@ -90,7 +89,6 @@ cv2.imwrite('QuickMAP_on.png', MAP1_img)
 for i in range(len(path2)):
     MAP2_img[path2[i][1], path2[i][0]] = 0
 cv2.imwrite('QuickMAP_off.png', MAP2_img)
-
 
 # calculating the DTW path costs
 DTW_cost_1 = dtw_cost(MAP1, path1)

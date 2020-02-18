@@ -34,6 +34,6 @@ Mario Emilio Manca and Duncan Wither
    - numpy
    - scipy
    - pathfinding
-   - tensorflow
-     - version 2.0.0 and 2.1.0 have [memory issues](https://github.com/tensorflow/tensorflow/issues/35030)
+   - tensorflow (ver 1.15.2)
+     - versions 2.0.0 and 2.1.0 have [memory issues](https://github.com/tensorflow/tensorflow/issues/35030)
    - matplotlib

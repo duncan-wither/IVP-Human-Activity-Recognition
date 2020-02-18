@@ -9,20 +9,18 @@ Description: Testing the DTW function using the depth camera data.
 import pickle
 import sys
 
+import cv2  # opencv-python
 ## 3rd Party Libs
 import numpy as np
 import pandas as pd
-import cv2  # opencv-python
-
 ## Pathfinding
 from pathfinding.core.diagonal_movement import DiagonalMovement
 from pathfinding.core.grid import Grid
 from pathfinding.finder.a_star import AStarFinder
 
 ## Custom Libs
-sys.path.append('../../') #enables seeing the libs above
+sys.path.append('../../')  # enables seeing the libs above
 from dtw import *
-
 
 '''
 TODO
@@ -55,10 +53,10 @@ calc_MAP = True
 # creating an array for the map
 # rows is p1, cols is p2
 if calc_MAP:
-    #MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals=-0.1)
+    # MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals=-0.1)
     MAP1 = create_map(p1ex1, p2ex1)
     print('Found Map 1')
-    #MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals=-0.1)
+    # MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals=-0.1)
     MAP2 = create_map(p1ex2, p2ex1)
     print('Found Map 2')
     
@@ -75,10 +73,10 @@ else:
 
 # converting map to image
 # having uniform colours between requires same scale factor
-img_min = min(MAP1.min(),MAP2.min())
-img_max = max(MAP1.max(),MAP2.max())
-MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
-MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
+img_min = min(MAP1.min(), MAP2.min())
+img_max = max(MAP1.max(), MAP2.max())
+MAP1_img = 255 * ((MAP1 - img_min) / (img_max - img_min))
+MAP2_img = 255 * ((MAP2 - img_min) / (img_max - img_min))
 cv2.imwrite('DTW1_dc.png', MAP1_img)
 cv2.imwrite('DTW2_dc.png', MAP2_img)
 
@@ -117,4 +115,3 @@ print('DTW cost 1 = ', DTW_cost_1)
 
 DTW_cost_2 = dtw_cost(MAP2, path2)
 print('DTW cost 2 = ', DTW_cost_2)
-
