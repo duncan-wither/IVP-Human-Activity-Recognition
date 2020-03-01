@@ -3,7 +3,7 @@
 Created by slam at 17/02/2020
 
 Description: Tensorflow example.
-Avalible here:
+Available here:
 https://www.tensorflow.org/tutorials/images/cnn
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
@@ -44,7 +44,7 @@ model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 model.add(layers.MaxPooling2D((2, 2)))
 model.add(layers.Conv2D(64, (3, 3), activation='relu'))
 
-# Flatttenitn moddel, and takin
+# Flattening model
 
 model.add(layers.Flatten())
 model.add(layers.Dense(64, activation='relu'))
@@ -70,4 +70,3 @@ plt.legend(loc='lower right')
 plt.savefig('tf_example_model_fit.png', bbox_inches='tight')
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 print(test_acc)
-

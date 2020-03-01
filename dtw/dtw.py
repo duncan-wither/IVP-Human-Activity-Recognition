@@ -61,21 +61,18 @@ def create_quick_map(vid_1, vid_2, path_width_percentage, other_vals=1e200):
     # constant for the width-height ratio
     k = r_max / c_max
     
-    # Parallelogram of path
-    '''
-    for y in rage(y_max):
-        for x in range(math.floor(y/k-dx),math.ceil(y/k+dx)):
-            if x>x_max or x<1:
-                break
-    '''
-    
     for r_val in range(r_max):
         for c_val in range(math.floor(r_val / k - dc), math.ceil(r_val / k + dc)):
             if c_max > c_val >= 0:
                 img_1 = vid_1[r_val, :]
                 img_2 = vid_2[c_val, :]
-                # Cost is defined by the sum of the distances of the squares.
-                map_array[r_val, c_val] = (np.sqrt(abs(np.square(img_2) - np.square(img_1)))).sum() + 1.0
+                # Cost is defined by the PSNR non dB measure
+                # MSE = (abs(np.square(img_2) - np.square(img_1))).sum()
+                # PSNR = MAX^2/MSE
+                # Higher PSNR is better, but we want lower, so we'll use 1/PSNR
+                # 1/PSNR = MSE/(MAX^2)
+                # Given max is the same for all, 1/PSNR is proportional to MSE thus kust ise MSE:
+                map_array[r_val, c_val] = (abs(np.square(img_2) - np.square(img_1))).sum() + 1.0
                 # the +1.0 is to prevent 0 values which are seen as impassible by the path-finding function.
     
     # making sure start and end are accessible

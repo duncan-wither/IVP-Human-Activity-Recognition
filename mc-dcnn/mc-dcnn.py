@@ -11,6 +11,7 @@ CNN stuff
 1D conv on tf: https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv1D
 Conv example on tf: https://www.tensorflow.org/tutorials/images/cnn
 CNN tutorial: https://www.youtube.com/watch?v=umGJ30-15_A&t=298s
+
 """
 
 # Default Libs
@@ -132,3 +133,11 @@ history = model.fit(data_act_train, label_act_train, epochs=20,
 test_loss, test_acc = model.evaluate(data_act_test, label_act_test, verbose=2)
 print(test_acc)
 
+'''
+How to save and load models:
+
+models.save('CNN_model')
+new_model = models.load_model('saved_model/my_model')
+'''
+# use  model.predict() to predict a value
+# make sure the array size is correct https://stackoverflow.com/questions/43017017/keras-model-predict-for-a-single-image

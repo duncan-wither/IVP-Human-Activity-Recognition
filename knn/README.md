@@ -16,8 +16,9 @@ All files bar `__init__.py` and `knn.py` are for/from testing
 ### TODOs
 - [ ] Additional Functionality
   - [x] Add ability to change which set is being used (ie D.C. or wrist accelerometer)
-  - [ ] Create function to quickly create lists for training sets.
-  - [ ] Implement a simpler euclidean distance cost function?
-- [ ] Improve performance, or is this done at a lower level (or higher)?
+  - [ ] [optional] Create function to quickly create lists for training sets.
+  - [ ] [optional] Implement a simpler euclidean distance cost function?
+- [x] Improve performance, or is this done at a lower level (or higher)?
+  - this is best done at a higher level according to [this](https://www.oreilly.com/library/view/the-art-of/9780596802424/ch04.html) advice.
 - [x] Develop kNN function into module.
  

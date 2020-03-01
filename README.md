@@ -9,6 +9,7 @@ Mario Emilio Manca and Duncan Wither
 ## Files
  - `dtw/` contains the dynamic time warping functionality.
  - `knn/` contains the k-nearest neighbor functionality (using a DTW search).
+ - `mc-dcnn/` contains the deep learning classifying functionality.
  - `MM_kNN.py` looks at integrating kNN for multi-modal data.
    - This doesnt appear to be working very effectively at the moment.
  - `tests/` contains all the testing files for the functions.
@@ -21,10 +22,11 @@ Mario Emilio Manca and Duncan Wither
    - [X] Create kNN Function
    - [ ] Integrate for multi modal data.
      - [ ] **How to use kNN results for multimodal Data?**
-     - [ ] **How to compare the 2D arrays (dc+pm) in the DTW?**
+     - [X] How to compare the 2D arrays (dc+pm) in the DTW?
  - [ ] Evaluate Deterministic Method
  - [ ] Create DL Method
-   - [ ] **Create Working feature Extractor**
+   - [x] Create initial working CNN feature extractor
+   - [ ] **Create working feature extractor**
    - [ ] Create MLP classifier
  - [ ] Evaluate DL Method
  

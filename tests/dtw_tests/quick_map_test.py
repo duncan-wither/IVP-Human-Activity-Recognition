@@ -62,10 +62,14 @@ print("Done!")
 
 # creating an array for the map
 print('Finding Maps')
+t0 = time.time()
 MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals=-0.1)
-print('Found Map 1')
+t1 = time.time()
+print('Found Map 1 in ', t1-t0, ' seconds')
+t0 = time.time()
 MAP2 = create_map(p1ex1, p2ex1)
-print('Found Map 2')
+t1 = time.time()
+print('Found Map 2 in ', t1-t0, ' seconds')
 
 # converting map to image
 # having uniform colours between requires same scale factor
@@ -76,10 +80,14 @@ MAP2_img = 255 * ((MAP2 - img_min) / (img_max - img_min))
 
 # Pathfinding
 print('Finding Paths')
+t0 = time.time()
 path1 = dtw_path(10 * MAP1)  # 100x as the pathfinder needs > 1
-print('Found Path 1')
+t1 = time.time()
+print('Found Path 1 in ', t1-t0, ' seconds')
+t0 = time.time()
 path2 = dtw_path(1000 * MAP2)  # 100x as the pathfinder needs > 1
-print('Found Path 2')
+t1 = time.time()
+print('Found Path 2 in ', t1-t0, ' seconds')
 
 # Adding the path to the image
 for i in range(len(path1)):
