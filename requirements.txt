@@ -1,0 +1,6 @@
+scipy
+pandas==1.0.0
+numpy
+pathfinding
+tensorflow==1.15.2
+

@@ -14,7 +14,7 @@ This module aims to replicate the functionality shown in
       - [ ] Understand the `Conv1D` filter inputs
       - [ ] Get a model to fit.
       - [ ] Produce some form of result for a 'test case'
-    - [ ] Transpose this for each dataset
-    - [ ] Combine into a module
- - [ ] Create multi-layered perceptron (MLP)
+    - [ ] **Transpose this for each dataset**
+    - [ ] **Combine into a module**
+ - [ ] **Create multi-layered perceptron (MLP)**
  - [ ] Combine Data in MLP

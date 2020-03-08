@@ -8,10 +8,9 @@ https://www.tensorflow.org/tutorials/images/cnn
 """
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import tensorflow as tf
-
-from tensorflow.keras import datasets, layers, models
 import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
 
 # Downloading the dataset.
 (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
@@ -23,9 +22,9 @@ class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer',
                'dog', 'frog', 'horse', 'ship', 'truck']
 
 # Verifying the dataset by looking at some images.
-plt.figure(figsize=(10,10))
+plt.figure(figsize=(10, 10))
 for i in range(25):
-    plt.subplot(5,5,i+1)
+    plt.subplot(5, 5, i + 1)
     plt.xticks([])
     plt.yticks([])
     plt.grid(False)
@@ -33,7 +32,7 @@ for i in range(25):
     # The CIFAR labels happen to be arrays,
     # which is why you need the extra index
     plt.xlabel(class_names[train_labels[i][0]])
-    
+
 plt.savefig('tf_example_training_data.png', bbox_inches='tight')
 
 # Creating the CNN model, of {2D convolution, ReLU activation and pooling} repeated
@@ -61,12 +60,12 @@ history = model.fit(train_images, train_labels, epochs=5,
 
 plt.clf()
 plt.plot(history.history['acc'], label='acc')
-plt.plot(history.history['val_acc'], label = 'val_acc')
+plt.plot(history.history['val_acc'], label='val_acc')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.ylim([0.5, 1])
 plt.legend(loc='lower right')
 
 plt.savefig('tf_example_model_fit.png', bbox_inches='tight')
-test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
+test_loss, test_acc = model.evaluate(test_images, test_labels, verbose=2)
 print(test_acc)

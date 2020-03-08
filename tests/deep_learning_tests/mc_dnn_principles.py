@@ -1,21 +1,12 @@
 #!/usr/bin/env python
-""" mc-dnn.py
-Created by slam at 17/02/2020
+""" mc_dnn_principles.py
+Created by slam at 03/03/2020
 
-Description:
-
-
-Info Sources:
-
-CNN stuff
-1D conv on tf: https://www.tensorflow.org/api_docs/python/tf/keras/layers/Conv1D
-Conv example on tf: https://www.tensorflow.org/tutorials/images/cnn
-CNN tutorial: https://www.youtube.com/watch?v=umGJ30-15_A&t=298s
-
+Description: Conains the principles behind the functions in mc-dnn.
 """
-
 # Default Libs
 from __future__ import absolute_import, division, print_function, unicode_literals
+
 import pickle
 import random as rd
 
@@ -24,8 +15,6 @@ import numpy as np
 import pandas as pd
 import tensorflow as tf
 from tensorflow.keras import layers, models
-
-# Custom Libs
 
 __author__ = "Duncan Wither"
 __copyright__ = "Copyright 2020, Duncan Wither"
@@ -55,7 +44,7 @@ SAMPS_PER_SET = 8
 # training
 train_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 data_act_train = np.zeros((len(train_list) * 7 * SAMPS_PER_SET, SET_LENGTH, 3))
-label_act_train = np.zeros(len(train_list) * 7* SAMPS_PER_SET)
+label_act_train = np.zeros(len(train_list) * 7 * SAMPS_PER_SET)
 # testing
 test_list = [18, 19]
 data_act_test = np.zeros((len(test_list) * 7, SET_LENGTH, 3))
@@ -65,7 +54,7 @@ label_act_test = np.zeros(len(test_list) * 7)
 # './../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(patient,exercise)
 for i in range(len(train_list)):
     for j in range(7):
-        data_act_train_str = '../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(train_list[i], j + 1)
+        data_act_train_str = '../../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(train_list[i], j + 1)
         # Reading Raw data from the CSV to temp variable
         dataset_holder = pd.read_csv(data_act_train_str).iloc[:, 1:].to_numpy(dtype=float)
         for k in range(SAMPS_PER_SET):
@@ -78,7 +67,7 @@ for i in range(len(train_list)):
 # Assigning Testing
 for i in range(len(test_list)):
     for j in range(7):
-        data_act_test_str = '../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(test_list[i], j + 1)
+        data_act_test_str = '../../MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(test_list[i], j + 1)
         # Reading Raw data from the CSV to temp variable
         dataset_holder = pd.read_csv(data_act_test_str).iloc[:, 1:].to_numpy(dtype=float)
         # Getting Randomised start point
@@ -122,7 +111,6 @@ print('l_test', label_act_test.shape)
 print('d_train', data_act_train.shape)
 print('d_test', data_act_test.shape)
 
-
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
@@ -140,4 +128,5 @@ models.save('CNN_model')
 new_model = models.load_model('saved_model/my_model')
 '''
 # use  model.predict() to predict a value
-# make sure the array size is correct https://stackoverflow.com/questions/43017017/keras-model-predict-for-a-single-image
+# make sure the array size is correct https://stackoverflow.com/questions/43017017/keras-model-predict-for-a-single
+# -image

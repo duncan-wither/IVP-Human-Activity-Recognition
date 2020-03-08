@@ -11,12 +11,9 @@ import sys
 
 import cv2  # opencv-python
 ## 3rd Party Libs
-import numpy as np
 import pandas as pd
+
 ## Pathfinding
-from pathfinding.core.diagonal_movement import DiagonalMovement
-from pathfinding.core.grid import Grid
-from pathfinding.finder.a_star import AStarFinder
 
 ## Custom Libs
 sys.path.append('../../')  # enables seeing the libs above

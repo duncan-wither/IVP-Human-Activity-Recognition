@@ -8,16 +8,13 @@ Description:Testing the dtw function with the accelerometers.
 ## Default Libs
 import pickle
 import sys
-import time
 
 ## 3rd Party Libs
 import cv2  # opencv-python
 import numpy as np
 import pandas as pd
+
 ## Pathfinding
-from pathfinding.core.diagonal_movement import DiagonalMovement
-from pathfinding.core.grid import Grid
-from pathfinding.finder.a_star import AStarFinder
 
 ## Custom Libs
 sys.path.append('../../')  # enables seeing the dtw lib
@@ -68,14 +65,14 @@ calc_MAP = True
 if calc_MAP:
     print('Finding Maps')
     # Compating the code functions
-    #t_0 = time.time()
-    MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals = -0.1)
-    #t_1 = time.time()
-    #MAP1 = create_map(p1ex1, p2ex1)
-    #t_2 = time.time()
-    #print('Quick Map took:',t_1-t_0,'     Normal Map took:',t_2-t_1)
+    # t_0 = time.time()
+    MAP1 = create_quick_map(p1ex1, p2ex1, 0.2, other_vals=-0.1)
+    # t_1 = time.time()
+    # MAP1 = create_map(p1ex1, p2ex1)
+    # t_2 = time.time()
+    # print('Quick Map took:',t_1-t_0,'     Normal Map took:',t_2-t_1)
     print('Found Map 1')
-    MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals = -0.1)
+    MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals=-0.1)
     print('Found Map 2')
     # Saving MAPs
     f = open('MAP_ac.pckl', 'wb')
@@ -90,10 +87,10 @@ else:
 
 # converting map to image
 # having uniform colours between requires same scale factor
-img_min = min(MAP1.min(),MAP2.min())
-img_max = max(MAP1.max(),MAP2.max())
-MAP1_img = 255 * ((MAP1-img_min)/ (img_max-img_min))
-MAP2_img = 255 * ((MAP2-img_min)/ (img_max-img_min))
+img_min = min(MAP1.min(), MAP2.min())
+img_max = max(MAP1.max(), MAP2.max())
+MAP1_img = 255 * ((MAP1 - img_min) / (img_max - img_min))
+MAP2_img = 255 * ((MAP2 - img_min) / (img_max - img_min))
 cv2.imwrite('DTW1_ac.png', MAP1_img)
 cv2.imwrite('DTW2_ac.png', MAP2_img)
 
@@ -105,20 +102,18 @@ if find_path:
     print('Finding Paths')
     
     # Timing the Paths
-    #t_0 = time.time()
-    #path1q = dtw_path(100 * MAP1_q)  # 100x as the pathfinder needs > 1
-    #t_1 = time.time()
+    # t_0 = time.time()
+    # path1q = dtw_path(100 * MAP1_q)  # 100x as the pathfinder needs > 1
+    # t_1 = time.time()
     path1 = dtw_path(10 * MAP1)  # 100x as the pathfinder needs > 1
-    #t_2 = time.time()
-    #print('Quick Map Pathing took:',t_1-t_0,'     Normal Map Pathing took:',t_2-t_1)
-    
-    
+    # t_2 = time.time()
+    # print('Quick Map Pathing took:',t_1-t_0,'     Normal Map Pathing took:',t_2-t_1)
     
     print('Found Path 1')
     path2 = dtw_path(1000 * MAP2)  # 100x as the pathfinder needs > 1
     print('Found Path 2')
     
-    #Saving For later
+    # Saving For later
     f = open('PATH_ac.pckl', 'wb')
     pickle.dump([path1, path2], f)
     f.close()
@@ -144,7 +139,7 @@ print('DTW cost 1 = ', DTW_cost_1)
 DTW_cost_2 = dtw_cost(MAP2, path2)
 print('DTW cost 2 = ', DTW_cost_2)
 
-if DTW_cost_1<DTW_cost_2:
+if DTW_cost_1 < DTW_cost_2:
     print('Sample is closer to first value (exercise 1)')
 else:
     print('Sample is closer to second value (exercise 2)')

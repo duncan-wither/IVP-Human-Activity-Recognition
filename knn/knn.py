@@ -5,18 +5,15 @@ Created by slam at 07/02/2020
 Description: k-Nearest Neighbour module.
 """
 # LIBS
-## Default Libs
-import pickle
-import random
-import sys
 
-## Custom Libs
-# sys.path.append('../../') #(for testing) enables seeing the libs above
-import dtw
 ## 3rd Party Libs
 import numpy as np
 import pandas as pd
 from scipy import stats
+
+## Custom Libs
+# sys.path.append('../../') #(for testing) enables seeing the libs above
+import dtw
 
 __author__ = "Duncan Wither"
 __copyright__ = "Copyright 2020, Duncan Wither"
@@ -46,7 +43,7 @@ def down_sample(one_d_array, factor):
     return np.true_divide(ds_array0, factor)
 
 
-def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, verbose=True, ex_str='act', pre_str=''):
+def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, verbose=True, sens_str='act', pre_str=''):
     # give pairs of patients and exercises, and a pair for the testing
     # take mode from top k values
     # optionally down sample.
@@ -55,24 +52,24 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, ver
     training_set = []
     
     # Setting up which exercise to use
-    if ex_str == 'act':
-        ex_str1 = 'act'
-        ex_str2 = 'act'
-    elif ex_str == 'acw':
-        ex_str1 = 'acw'
-        ex_str2 = 'acw'
-    elif ex_str == 'dc':
-        ex_str1 = 'dc_0.05_0.05'
-        ex_str2 = 'dc'
-    elif ex_str == 'pm':
-        ex_str1 = 'pm_1.0_1.0'
-        ex_str2 = 'pm'
+    if sens_str == 'act':
+        sens_str1 = 'act'
+        sens_str2 = 'act'
+    elif sens_str == 'acw':
+        sens_str1 = 'acw'
+        sens_str2 = 'acw'
+    elif sens_str == 'dc':
+        sens_str1 = 'dc_0.05_0.05'
+        sens_str2 = 'dc'
+    elif sens_str == 'pm':
+        sens_str1 = 'pm_1.0_1.0'
+        sens_str2 = 'pm'
     else:  # default to act
-        ex_str1 = 'act'
-        ex_str2 = 'act'
+        sens_str1 = 'act'
+        sens_str2 = 'act'
     
-    base_str_1 = pre_str + 'MEx Dataset/Dataset/' + ex_str1 + '/'
-    base_str_2 = '_' + ex_str2 + '_1.csv'
+    base_str_1 = pre_str + 'MEx Dataset/Dataset/' + sens_str1 + '/'
+    base_str_2 = '_' + sens_str2 + '_1.csv'
     
     # Creating the training set array
     for i in range(no_of_train_sets):
@@ -113,7 +110,7 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, ver
         # costs[t_val][1] = random.random() #example cost function
         ## DTW Cost
         MAP = dtw.create_quick_map(training_set[t_val][0], test_set, 0.2, other_vals=-0.1)
-        PATH = dtw.dtw_path(100 * MAP)
+        PATH = dtw.dtw_path(100 * MAP+1)
         costs[t_val][1] = dtw.dtw_cost(MAP, PATH)
         
         # print(costs[t_val][1])
@@ -135,8 +132,8 @@ def pick_nn(cost_array, k, verbose=True):
     return nearest_neighbor
 
 
-def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate=1, verbose=True, ex_str='act', pre_str=''):
-    costs = find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate, verbose, ex_str, pre_str)
+def mex_knn(pat_ex_pair_list_train, pat_ex_pair_test, k, down_sample_rate=1, verbose=True, sens_str='act', pre_str=''):
+    costs = find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate, verbose, sens_str, pre_str)
     nn = pick_nn(costs, k)
     return nn
 

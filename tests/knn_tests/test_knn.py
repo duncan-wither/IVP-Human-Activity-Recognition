@@ -7,7 +7,6 @@ Description: Simple test of knn process
 # LIBS
 ## Default Libs
 import pickle
-import random
 import sys
 
 ## 3rd Party Libs
@@ -16,9 +15,8 @@ import pandas as pd
 from scipy import stats
 
 ## Custom Libs
-sys.path.append('../../') #enables seeing the libs above
+sys.path.append('../../')  # enables seeing the libs above
 from dtw import dtw
-
 
 __author__ = "Duncan Wither"
 __copyright__ = "Copyright 2020, Duncan Wither"

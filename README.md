@@ -29,13 +29,13 @@ Mario Emilio Manca and Duncan Wither
    - [ ] **Create working feature extractor**
    - [ ] Create MLP classifier
  - [ ] Evaluate DL Method
+ - [ ] Evaluation Script
+   - Runs each method X times with random input sets
+   - Times each run, to get accuracy.
+   - Takes the % accuract and adds it to a list (and saves list)
+   - Prints resutls graphs.
+   - use [this](https://stackoverflow.com/questions/4675728/redirect-stdout-to-a-file-in-python) to log console for results dissection. 
  
  ### Other info
- - Libraries required for the python code:
-   - pandas
-   - numpy
-   - scipy
-   - pathfinding
-   - tensorflow (ver 1.15.2)
-     - versions 2.0.0 and 2.1.0 have [memory issues](https://github.com/tensorflow/tensorflow/issues/35030)
-   - matplotlib
+ Use tensorflow ver 1.15.2 as versions 2.0.0 and 2.1.0 have [memory issues](https://github.com/tensorflow/tensorflow/issues/35030)
+ 

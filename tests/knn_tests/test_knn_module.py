@@ -11,7 +11,7 @@ from sys import path
 # 3rd Party Libs
 
 # Custom Libs
-path.append('../../') #enables seeing the libs above
+path.append('../../')  # enables seeing the libs above
 from knn import *
 
 __author__ = "Duncan Wither"
@@ -23,4 +23,5 @@ __maintainer__ = "Duncan Wither"
 __email__ = ""
 __status__ = "Prototype"
 
-choice = mex_knn([(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)],(4,2), 5,ex_str = 'act', down_sample_rate = 100, pre_str = '../../')
+choice = mex_knn([(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)], (4, 2), 5, sens_str='act',
+                 down_sample_rate=100, pre_str='../../')

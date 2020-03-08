@@ -1,8 +1,5 @@
-/bin/**
-/lib/**
-lib64
-pyvenv.cfg
-/MEx Dataset/**
+MEx Dataset/
 __pycache__/
 *.py[cod]
-
+venv/
+.idea/
