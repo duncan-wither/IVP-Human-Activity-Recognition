@@ -7,27 +7,14 @@ Description:Testing the dtw function with the accelerometers.
 # LIBS
 ## Default Libs
 import pickle
-import sys
 
 ## 3rd Party Libs
 import cv2  # opencv-python
 import numpy as np
 import pandas as pd
 
-## Pathfinding
-
 ## Custom Libs
-sys.path.append('../../')  # enables seeing the dtw lib
 from dtw import *
-
-__author__ = "Duncan Wither"
-__copyright__ = "Copyright 2020, Duncan Wither"
-__credits__ = ["Duncan Wither"]
-__license__ = ""
-__version__ = "1.0"
-__maintainer__ = "Duncan Wither"
-__email__ = ""
-__status__ = "Prototype"
 
 
 # Functions

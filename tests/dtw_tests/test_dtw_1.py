@@ -7,16 +7,12 @@ Description: Testing the DTW function using the depth camera data.
 # LIBS
 ## Default Libs
 import pickle
-import sys
 
 import cv2  # opencv-python
 ## 3rd Party Libs
 import pandas as pd
 
-## Pathfinding
-
 ## Custom Libs
-sys.path.append('../../')  # enables seeing the libs above
 from dtw import *
 
 '''

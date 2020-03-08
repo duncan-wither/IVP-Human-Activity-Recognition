@@ -14,7 +14,7 @@ from tensorflow.keras import datasets, layers, models
 
 # Downloading the dataset.
 (train_images, train_labels), (test_images, test_labels) = datasets.cifar10.load_data()
-
+print(train_labels)
 # Normalize pixel values to be between 0 and 1
 train_images, test_images = train_images / 255.0, test_images / 255.0
 

@@ -15,18 +15,7 @@ import pandas as pd
 from scipy import stats
 
 ## Custom Libs
-sys.path.append('../../')  # enables seeing the libs above
 from dtw import dtw
-
-__author__ = "Duncan Wither"
-__copyright__ = "Copyright 2020, Duncan Wither"
-__credits__ = ["Duncan Wither"]
-__license__ = ""
-__version__ = "1.0"
-__maintainer__ = "Duncan Wither"
-__email__ = ""
-__status__ = "Prototype"
-
 
 # Function
 # Downsampling function to reduce amount of accelerometer data.

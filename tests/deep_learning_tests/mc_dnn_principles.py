@@ -16,23 +16,12 @@ import pandas as pd
 import tensorflow as tf
 from tensorflow.keras import layers, models
 
-__author__ = "Duncan Wither"
-__copyright__ = "Copyright 2020, Duncan Wither"
-__credits__ = ["Duncan Wither"]
-__license__ = ""
-__version__ = "1.0"
-__maintainer__ = "Duncan Wither"
-__email__ = ""
-__status__ = "Prototype"
-
 '''
 How This Works
  - Each Channel Takes a single channel of multivariate data
  - Combine each channel in a multi-layer perceptron to perform classification
 
 '''
-
-# Reading Data
 
 # constants
 # picking this many samples (as the smallest dataset is 1739 long)

@@ -13,4 +13,4 @@ import sys
 import mc_dcnn
 
 print(sys.path)
-mc_dcnn.dcnn([1,2,3,4,5],[1],pre_str='../../')
+mc_dcnn.dcnn([(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)],[(4,2)],pre_str='../../')

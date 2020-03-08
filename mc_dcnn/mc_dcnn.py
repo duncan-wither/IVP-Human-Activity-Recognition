@@ -17,14 +17,11 @@ CNN tutorial: https://www.youtube.com/watch?v=umGJ30-15_A&t=298s
 # Default Libs
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import pickle
 import random as rd
 
 import numpy as np
 # 3rd Party Libs
 import pandas as pd
-import tensorflow as tf
-from tensorflow.keras import layers, models
 
 # Custom Libs
 
@@ -45,89 +42,75 @@ How This Works
 '''
 
 
-def dcnn(train_pat_list, test_pat_list, ex_list=None, sens_str='act', pre_str='', samps_per_set=8):
+def dcnn(train_pair_list, test_pair_list, sens_str='act', pre_str='', samps_per_set=8):
     # constants
     # picking this many samples (as the smallest dataset is 1739 long)
     SET_LENGTH = 1600
     # How many times to sample the dataset
     SAMPS_PER_SET = samps_per_set
     
-    # default exercise list is all the exercises
-    if ex_list is None:
-        ex_list = [1, 2, 3, 4, 5, 6, 7]
-    
     # Setting the final dimention of the data
     if sens_str == 'dc':
-        DATA_DIM = 192  # (128*16)
+        DATA_DIM_1 = 12
+        DATA_DIM_2 = 16
     elif sens_str == 'pm':
-        DATA_DIM = 512  # (32*16)
+        DATA_DIM_1 = 32
+        DATA_DIM_2 = 16
     else:  # i.e accelerometers
-        DATA_DIM = 3
+        DATA_DIM_1 = 3
+        DATA_DIM_2 = 1
     
     # Initialising the matricies
     # training
-    data_act_train = np.zeros((len(train_pat_list) * 7 * SAMPS_PER_SET, SET_LENGTH, 3))
-    label_act_train = np.zeros(len(train_pat_list) * 7 * SAMPS_PER_SET)
+    data_act_train = np.zeros((len(train_pair_list) * SAMPS_PER_SET, SET_LENGTH , DATA_DIM_1, DATA_DIM_2))
+    label_act_train = np.zeros((len(train_pair_list) * SAMPS_PER_SET))
     
     # testing
-    data_act_test = np.zeros((len(test_pat_list) * 7, SET_LENGTH, DATA_DIM))
-    label_act_test = np.zeros(len(test_pat_list) * 7)
+    data_act_test = np.zeros((len(test_pair_list) * SAMPS_PER_SET, SET_LENGTH, DATA_DIM_1, DATA_DIM_2))
+    label_act_test = np.zeros((len(test_pair_list) * SAMPS_PER_SET))
     
-    # Assigning trainign
-    for i in range(len(train_pat_list)):
-        for j in range(7):
-            
-            if sens_str == 'dc':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/dc_0.05_0.05/{:0>2d}/{:0>2d}_dc_1.csv'.format(
-                    train_pat_list[i], j + 1)
-            elif sens_str == 'pm':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/pm_0.05_0.05/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    train_pat_list[i], j + 1)
-            elif sens_str == 'act':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    train_pat_list[i], j + 1)
-            elif sens_str == 'acw':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/acw/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    train_pat_list[i], j + 1)
-            
-            #data_act_train_str = 'MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(train_pat_list[i], j + 1)
-            # Reading Raw data from the CSV to temp variable
-            dataset_holder = pd.read_csv(data_act_train_str).iloc[:, 1:].to_numpy(dtype=float)
-            
-            for k in range(SAMPS_PER_SET):
-                # Geting a start point within the dataset at least SET_LENGTH from the end
-                start = rd.randint(0, dataset_holder.shape[0] - (SET_LENGTH + 1))  # +1 for safety
-                # Writing to the training array
-                data_act_train[((7 * i + j) * SAMPS_PER_SET + k), :, :] = dataset_holder[start:(start + SET_LENGTH), :]
-                label_act_train[((7 * i + j) * SAMPS_PER_SET + k)] = j  # get labels
-    
-    # Assigning Testing
-    for i in range(len(test_pat_list)):
-        for j in range(7):
-            
-            if sens_str == 'dc':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/dc_0.05_0.05/{:0>2d}/{:0>2d}_dc_1.csv'.format(
-                    test_pat_list[i], j + 1)
-            elif sens_str == 'pm':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/pm_0.05_0.05/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    test_pat_list[i], j + 1)
-            elif sens_str == 'act':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    test_pat_list[i], j + 1)
-            elif sens_str == 'acw':
-                data_act_train_str = pre_str + 'MEx Dataset/Dataset/acw/{:0>2d}/{:0>2d}_act_1.csv'.format(
-                    test_pat_list[i], j + 1)
-            
-            # Reading Raw data from the CSV to temp variable
-            dataset_holder = pd.read_csv(data_act_train_str).iloc[:, 1:].to_numpy(dtype=float)
-            # Getting Randomised start point
+    # Assigning training
+    i = 0
+    for pair in train_pair_list:
+        
+        data_str = create_file_str(sens_str, pair, pre_str)
+        # Reading Raw data from the CSV to temp variable in numpy array form
+        dataset_holder = pd.read_csv(data_str).iloc[:, 1:].to_numpy(dtype=float)
+        
+        # for each in the set super sampling
+        for set_sup_samp in range(SAMPS_PER_SET):
+            # Geting a start point within the dataset at least SET_LENGTH from the end
             start = rd.randint(0, dataset_holder.shape[0] - (SET_LENGTH + 1))  # +1 for safety
-            # Writing to the testing array.
-            data_act_test[7 * i + j, :, :] = dataset_holder[start:(start + SET_LENGTH), :]
-            label_act_test[7 * i + j] = j  # get labels
+            # Writing to the training array
+            
+            data_act_train[i, :, :] = dataset_holder[start:(start + SET_LENGTH), :].reshape(SET_LENGTH,DATA_DIM_1, DATA_DIM_2)
+            label_act_train[i] = pair[1]  # get labels
+            i += 1
+    
+    
+    # Making sure that it is a list of testing qs
+    if not(isinstance(test_pair_list, list)):
+        #print('Please make testing pair list a list, even if it is only one pair long (i.e. use "[]")')
+        test_pair_list = [test_pair_list]
 
-    print('Gathered Data')
+    # Assigning Testing
+    i = 0
+    for pair in test_pair_list:
+        data_str = create_file_str(sens_str, pair, pre_str)
+        # Reading Raw data from the CSV to temp variable in numpy array form
+        dataset_holder = pd.read_csv(data_str).iloc[:, 1:].to_numpy(dtype=float)
+        
+        # Getting Randomised start point
+        start = rd.randint(0, dataset_holder.shape[0] - (SET_LENGTH + 1))  # +1 for safety
+        
+        # Writing to the testing arrays.
+        data_act_test[i, :, :] = dataset_holder[start:(start + SET_LENGTH), :].reshape(SET_LENGTH,DATA_DIM_1, DATA_DIM_2)
+        label_act_test[i] = pair[1]  # get labels
+        i += 1
+    
     return
+
+
 '''
 # Creating the CNN model
 model = models.Sequential()
@@ -177,6 +160,26 @@ How to save and load models:
 models.save('CNN_model')
 new_model = models.load_model('saved_model/my_model')
 '''
+
+
 # use  model.predict() to predict a value
 # make sure the array size is correct https://stackoverflow.com/questions/43017017/keras-model-predict-for-a-single
 # -image
+
+def create_file_str(sens_str, pair, pre_str):
+    if sens_str == 'dc':
+        file_str = pre_str + 'MEx Dataset/Dataset/dc_0.05_0.05/{:0>2d}/{:0>2d}_dc_1.csv'.format(
+            pair[0], pair[1] + 1)
+    elif sens_str == 'pm':
+        file_str = pre_str + 'MEx Dataset/Dataset/pm_0.05_0.05/{:0>2d}/{:0>2d}_act_1.csv'.format(
+            pair[0], pair[1] + 1)
+    elif sens_str == 'act':
+        file_str = pre_str + 'MEx Dataset/Dataset/act/{:0>2d}/{:0>2d}_act_1.csv'.format(
+            pair[0], pair[1] + 1)
+    elif sens_str == 'acw':
+        file_str = pre_str + 'MEx Dataset/Dataset/acw/{:0>2d}/{:0>2d}_act_1.csv'.format(
+            pair[0], pair[1] + 1)
+    else:
+        file_str = 'Error_in_file_str'
+    
+    return file_str
