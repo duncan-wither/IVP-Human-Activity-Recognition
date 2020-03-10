@@ -7,6 +7,7 @@ Implemented kNN function as a module. The main reference material is an article 
  detailed inspection of the results, and thus more flexibility to combine for multi-modal data.
  - `pick_nn` simple function to pick the k'th nearest neighbor from the sorted costs list. 
  - `down_sample` works to reduce the amount of data, esp as each accelerometer is operating at 1kHz.
+ - `resample` creates an array of samples from the original long sample for further use.
  
 ## Other Files
 All files bar `__init__.py` and `knn.py` are for/from testing
@@ -20,5 +21,9 @@ All files bar `__init__.py` and `knn.py` are for/from testing
   - [ ] [optional] Implement a simpler euclidean distance cost function?
 - [x] Improve performance, or is this done at a lower level (or higher)?
   - this is best done at a higher level according to [this](https://www.oreilly.com/library/view/the-art-of/9780596802424/ch04.html) advice.
+- [X] Improve performace by approprietly sampling data
+    - [X] split each set into segments of rougly 1.5 seconds.
 - [x] Develop kNN function into module.
+- [ ] Add input for sampling length
+   - [ ] Look at using *args **kwargs framework.
  

@@ -61,15 +61,22 @@ for run_no in range(runs_for_eval):
     # Running KNN
     # for each sensor
     for sens in ['act', 'acw', 'dc', 'pm']:
+        
+        # Setting the Down sampling Rate.
+        if sens == 'act' or sens == 'acw':
+            dsr = 10
+        else:
+            dsr = 1
+        
         NN_sens_list = []
         for test_pair in testing_list:
             t0 = time.time()
-            costs = knn.find_costs(traning_list, test_pair, verbose=0, down_sample_rate=100, sens_str=sens)
+            costs = knn.find_costs(traning_list, test_pair, down_sample_rate=dsr, verbose=False, sens_str=sens)
             t1 = time.time()
             
             # presenting a % done
             i += 1
-            print(100 * i / (RUNS * 4 * len(testing_list)), '% Done')
+            print(100 * i / (RUNS * 4 * len(testing_list)), '% Done in ', t1 - t0, ' Seconds.')
             NN_list = []
             for k_val in range(1, 10):
                 NN_list.append([test_pair[1], knn.pick_nn(costs, k_val, verbose=False), t0 - t1, costs])
@@ -109,15 +116,3 @@ plt.xlabel('No. of nearest neighbors Considered')
 plt.ylabel('Accuracy (%)')
 plt.savefig('Accuracy_vs_K.png')
 
-'''
-https://trello.com/b/tRZwdjFc/life-organisation
-https://towardsdatascience.com/the-most-intuitive-and-easiest-guide-for-convolutional-neural-network-3607be47480
-https://github.com/duncan-wither?tab=repositories
-https://www.google.com/search?q=cnn+architecture&oq=CNN+arch&aqs=chrome.0.0j69i57j0l6.1971j0j7&sourceid=chrome&ie=UTF-8
-https://www.w3schools.com/python/ref_random_shuffle.asp
-https://thispointer.com/python-how-to-check-if-an-item-exists-in-list-search-by-value-or-condition/
-https://matplotlib.org/tutorials/intermediate/legend_guide.html
-https://chartio.com/resources/tutorials/how-to-save-a-plot-to-a-file-using-matplotlib/
-https://link.springer.com/chapter/10.1007/11847465_11
-https://link.springer.com/chapter/10.1007/11548706_13
-'''
