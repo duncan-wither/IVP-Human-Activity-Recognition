@@ -9,6 +9,7 @@ Mario Emilio Manca and Duncan Wither
 ## Files
  - `dtw/` contains the dynamic time warping functionality.
  - `knn/` contains the k-nearest neighbor functionality (using a DTW search).
+ - `MEX_utils/` contains two functions to make dealing with the MEX dataset easier.
  - `mc-dcnn/` contains the deep learning classifying functionality.
  - `MM_kNN.py` looks at integrating kNN for multi-modal data.
    - This doesnt appear to be working very effectively at the moment.
