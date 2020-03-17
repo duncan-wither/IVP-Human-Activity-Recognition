@@ -14,15 +14,12 @@ Mario Emilio Manca and Duncan Wither
  - `MM_kNN.py` looks at integrating kNN for multi-modal data.
    - This doesnt appear to be working very effectively at the moment.
  - `tests/` contains all the testing files for the functions.
-<<<<<<< HEAD
  - `Visual_DC.py` takes the output of the depth camera and makes a time lapse video.
  - `Visual_PM.py` data from the pressure mat is normalised and treated as an image, as for the depth camera the frames are put together in a time lapse video.
  - `Visual_Acc.py` prints on a 3D graph the data from the two accelerometers, based on the user input.   
-=======
  - `Eval_kNN.py` script to evaluate the kNN with DTW on the dataset using several runs of 70:30 partitions of training 
     to testing. This generates the `.png` files which show the effectiveness of the module. The `.pckl` file is the
     pre-tested grouping to provide easier dissection of the results.
->>>>>>> 600e88f8ada285e563139c9a55b7f5a3f72c9fa9
 
 ### Key TODOs
 **Bold** is currently active / important problems.
