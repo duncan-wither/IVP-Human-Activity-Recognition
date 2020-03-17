@@ -38,11 +38,10 @@ def create_mex_str(patient_no, exercise_no, sensor_str, pre_str=""):
         print('Invalid Sensor String for "create_mex_str" function')
         return
     
-    # patient_no 22 only does four once
-    if patient_no == 22:
-        patient_no = 21
-    
     if exercise_no == 8:
+        # patient_no 22 only does four once
+        if patient_no == 22:
+            patient_no = 21
         str_2 = '/{:0>2d}/04_'.format(patient_no) + sensor_str + '_2.csv'
     else:
         str_2 = '/{:0>2d}/{:0>2d}_'.format(patient_no, exercise_no) + sensor_str + '_1.csv'

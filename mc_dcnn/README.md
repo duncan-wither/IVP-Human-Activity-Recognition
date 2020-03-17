@@ -8,11 +8,10 @@ This module aims to replicate the functionality shown in
  
 ### Todo's
  - [ ] Create DCNN
-    - [ ] Create DCNN for one dataset (act in this case)
+    - [x] Create DCNN for one dataset (act in this case)
       - [x] Read data to one suitable for tensorflow (tf)
-        - [ ] Variable Length datasets?
       - [ ] Understand the `Conv1D` filter inputs
-      - [ ] Get a model to fit.
+      - [x] Get a model to fit.
       - [ ] Produce some form of result for a 'test case'
     - [ ] **Transpose this for each dataset**
     - [ ] **Combine into a module**

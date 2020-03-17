@@ -69,7 +69,7 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, ver
         SAMP_LEN = 10 * 5  # 10Hz (100Hz 10x down sampled) with 5s sampling
     
     # Number of samples to take from each set (min is 158 samples, 158/50 samps = 3.16 sets, use 5 sets)
-    SET_SAMPLES = 10
+    SET_SAMPLES = 4
     
     # Creating the training set array
     for i in range(no_of_train_sets):
@@ -131,8 +131,8 @@ def find_costs(pat_ex_pair_list_train, pat_ex_pair_test, down_sample_rate=1, ver
     
     # Sorting Costs
     costs = costs[costs[:, 1].argsort()]
-    print(costs.shape)
-    print(costs[0:2])
+    #print(costs.shape)
+    #print(costs[0:2])
     return costs
 
 
