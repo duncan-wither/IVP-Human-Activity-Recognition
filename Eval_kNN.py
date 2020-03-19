@@ -131,7 +131,7 @@ print('Average Time Taken', t_ave)
 plt.title('Accuracy when comparing different Neighbors')
 plt.xlabel('No. of nearest neighbors Considered')
 plt.ylabel('Accuracy (%)')
-plt=plt
+plt = plt
 plt.legend(framealpha=1.0)
 plt.savefig('Accuracy_vs_K.png')
 
@@ -177,8 +177,8 @@ for i in range(4):
 final_acc = accuracies[4, 0] / (RUNS * 72 * 0.01)
 print('The Combined Estimate has accuracy of ', accuracies[4, 0] / (RUNS * 72 * 0.01), '%')
 
-plt.plot([1,9],[final_acc,final_acc], label='Combined Result')
-plt.plot([1,9],[100/8,100/8], label='Random Choice')
+plt.plot([1, 9], [final_acc, final_acc], label='Combined Result')
+plt.plot([1, 9], [100 / 8, 100 / 8], label='Random Choice')
 
-plt.legend(loc="right",framealpha=1.0)
+plt.legend(loc="right", framealpha=1.0)
 plt.savefig('Accuracy_vs_K_and_Final.png')

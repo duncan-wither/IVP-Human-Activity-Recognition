@@ -6,14 +6,8 @@ Implemented kNN function as a module. The main reference material is an article 
  - `find_costs` This is the majority of the kNN module. It returns the sorted cost list, allowing for more 
  detailed inspection of the results, and thus more flexibility to combine for multi-modal data.
  - `pick_nn` simple function to pick the k'th nearest neighbor from the sorted costs list. 
- - `down_sample` works to reduce the amount of data, esp as each accelerometer is operating at 1kHz.
  - `resample` creates an array of samples from the original long sample for further use.
  
-## Other Files
-All files bar `__init__.py` and `knn.py` are for/from testing
- - `test_knn.py` is just the basic testing of the described knn algorithm
- - `test_knn_module.py` is a test of the `knn` module.
-
 ### TODOs
 - [ ] Additional Functionality
   - [x] Add ability to change which set is being used (ie D.C. or wrist accelerometer)

@@ -10,14 +10,6 @@ Classification Using Numerosity Reduction" by Xi et al.
  - `dtw_path` finds the lowest cost path using the `pathfinding` module.
  - `dtw_cost` calculates the cost of a given path.
 
-## Other Files
-All files bar `__init__.py` and `dtw.py` are for/from testing
- - `test_dtw_1.py` - Testing function using the MEx depth camera data.
- - `test_dtw_2.py` - Testing function using the MEx accelerometer data.
- - `MAP.pckl` - Pickle of the two dtw_maps generates
- - `PATH.pckl` - Pickle of the two paths created from these paths.
- - *PNG* files - Images of the DTW function path
- - the suffix *_ac* is using accelerometer data, *_dc* is using depth camera data.
 ### TODOs
 - [ ] Improve performance
   - [X] Reduce search space by reducing the max width of search
