@@ -20,6 +20,11 @@ Mario Emilio Manca and Duncan Wither
  - `Eval_kNN.py` script to evaluate the kNN with DTW on the dataset using several runs of 70:30 partitions of training 
     to testing. This generates the `.png` files which show the effectiveness of the module. The `.pckl` file is the
     pre-tested grouping to provide easier dissection of the results.
+ - `Eval_act_MLP.py` takes the thigh accelerometer data and implements an MLP
+ - `Eval_acw_MLP.py` takes the wrist accelerometer data and implements an MLP
+ - `Eval_DC_CNN.py` takes the depth camera data and implements a CNN
+ - `Eval_PM_CNN.py` takes the pressure mat data and implements a CNN
+ - `MM_NN.py` multi input algorithm that take the data from all four sensors
 
 ### Key TODOs
 **Bold** is currently active / important problems.
