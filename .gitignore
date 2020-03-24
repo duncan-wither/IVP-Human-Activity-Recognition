@@ -4,4 +4,3 @@ venv*/
 .idea/
 /tests/deep_learning_tests/mixed_data_test.py.zip
 tests/deep_learning_tests/console_log.txt
-tests/deep_learning_tests/console_log.txt
