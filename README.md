@@ -14,6 +14,13 @@ Mario Emilio Manca and Duncan Wither
  - `MM_kNN.py` looks at integrating kNN for multi-modal data.
    - This doesnt appear to be working very effectively at the moment.
  - `tests/` contains all the testing files for the functions.
+ - `act_CNN/` contains the thigh accelerometer CNN functionality 
+ - `act_MLP/` contains the thigh accelerometer MLP functionality 
+ - `acw_CNN/` contains the wrist accelerometer CNN functionality 
+ - `acw_MLP/` contains the thigh accelerometer MLP functionality 
+ - `DC_CNN/` contains the depth camera CNN functionality 
+ - `PM_CNN/` contains the pressure mat CNN functionality 
+ - `MM_NN/` contains the multi-input NN functionality 
  - `Visual_DC.py` takes the output of the depth camera and makes a time lapse video.
  - `Visual_PM.py` data from the pressure mat is normalised and treated as an image, as for the depth camera the frames are put together in a time lapse video.
  - `Visual_Acc.py` prints on a 3D graph the data from the two accelerometers, based on the user input.   
@@ -25,6 +32,8 @@ Mario Emilio Manca and Duncan Wither
  - `Eval_DC_CNN.py` takes the depth camera data and implements a CNN
  - `Eval_PM_CNN.py` takes the pressure mat data and implements a CNN
  - `MM_NN.py` multi input algorithm that takes the data from all four sensors
+ - `Eval_act_CNN.py` takes the thigh accelerometer data and implements an CNN
+ - `Eval_acw_CNN.py` takes the wrist accelerometer data and implements an CNN
 
 ### Key TODOs
 **Bold** is currently active / important problems.
