@@ -65,7 +65,7 @@ model.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=
 
 # # train the model
 print("[INFO] training model...")
-model.fit([act_trainX_attributes, acw_trainX_attributes, DC_train_images, PM_train_images], act_train_labels, epochs=15)
+model.fit([act_trainX_attributes, acw_trainX_attributes, DC_train_images, PM_train_images], act_train_labels, epochs=100)
 
 print("[INFO] testing model...")
 test_loss, test_acc = model.evaluate([act_testX_attributes, acw_testX_attributes, DC_test_images, PM_test_images],
