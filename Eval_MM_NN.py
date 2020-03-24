@@ -14,13 +14,13 @@ inputPath = "MEx Dataset/Dataset/"
 
 # ============ Loading data =================
 print("[INFO] loading thigh accelerometer attributes...")
-act_attributes, act_labels = datasets.load_ac_attributes_labels(inputPath + 'act', 'act')
+act_attributes, act_labels = datasets.load_ac_attributes_labels(inputPath + 'act', 'act', verbose=False)
 print("[INFO] loading wrist accelerometer attributes...")
-acw_attributes, acw_labels = datasets.load_ac_attributes_labels(inputPath + 'acw', 'acw')
+acw_attributes, acw_labels = datasets.load_ac_attributes_labels(inputPath + 'acw', 'acw', verbose=False)
 print("[INFO] loading depth camera images...")
-DC_images, DC_labels = datasets.load_DC_images(inputPath + 'dc_0.05_0.05')
+DC_images, DC_labels = datasets.load_DC_images(inputPath + 'dc_0.05_0.05', verbose=False)
 print("[INFO] loading pressure mat images...")
-PM_images, PM_labels = datasets.load_PM_images(inputPath + 'pm_1.0_1.0')
+PM_images, PM_labels = datasets.load_PM_images(inputPath + 'pm_1.0_1.0', verbose=False)
 
 # ============ Partition data 70 % training, 30 % testing =========================
 print("[INFO] constructing training/testing split...")
@@ -35,8 +35,10 @@ print("[INFO] constructing training/testing split...")
 
 # ======== Perform min-max scaling on accelerometer data ===================
 print("[INFO] processing data...")
-(act_trainX_attributes, act_testX_attributes) = datasets.process_ac_attributes(act_train_attributes, act_test_attributes)
-(acw_trainX_attributes, acw_testX_attributes) = datasets.process_ac_attributes(acw_train_attributes, acw_test_attributes)
+(act_trainX_attributes, act_testX_attributes) = datasets.process_ac_attributes(act_train_attributes,
+                                                                               act_test_attributes)
+(acw_trainX_attributes, acw_testX_attributes) = datasets.process_ac_attributes(acw_train_attributes,
+                                                                               acw_test_attributes)
 
 # ========= Create MLP and CNN models =============================
 # MLP for the thigh accelerometer
@@ -65,10 +67,12 @@ model.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=
 
 # # train the model
 print("[INFO] training model...")
-model.fit([act_trainX_attributes, acw_trainX_attributes, DC_train_images, PM_train_images], act_train_labels, epochs=100)
+model.fit([act_trainX_attributes, acw_trainX_attributes, DC_train_images, PM_train_images], act_train_labels, epochs=15,
+          verbose=2, validation_data=[[act_testX_attributes, acw_testX_attributes, DC_test_images, PM_test_images],
+                                      act_test_labels])
 
 print("[INFO] testing model...")
 test_loss, test_acc = model.evaluate([act_testX_attributes, acw_testX_attributes, DC_test_images, PM_test_images],
-			act_test_labels)
+                                     act_test_labels)
 
 print('\nTest accuracy:', test_acc)

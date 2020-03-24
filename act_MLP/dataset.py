@@ -4,7 +4,7 @@ import numpy as np
 
 maxRows = 150
 
-def load_ac_attributes_labels(inputPath):
+def load_ac_attributes_labels(inputPath, verbose = True):
     first_iteration = True
 
     # initialize the list of column names in the CSV file and then
@@ -15,7 +15,8 @@ def load_ac_attributes_labels(inputPath):
     # for i in range(training_patients_number):
     for i in range(30):
         pat_num = '{:0>2d}'.format(i + 1)
-        print('Reading patient ' + pat_num + ' data...')
+        if verbose:
+            print('Reading patient ' + pat_num + ' data...')
         # Iterate through the 8 exercises
         for n in range(7):
             ex_number = '{:0>2d}'.format(n + 1)

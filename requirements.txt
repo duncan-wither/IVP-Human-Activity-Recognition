@@ -1,3 +1,5 @@
+keras
+scikit-learn
 scipy
 pandas==1.0.0
 numpy

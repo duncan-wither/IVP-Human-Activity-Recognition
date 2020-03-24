@@ -59,7 +59,7 @@ model.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=
 print("[INFO] training model...")
 # model.fit(trainImagesX, trainY, validation_data=(testImagesX, testY),
 # 	epochs=200, batch_size=8)
-model.fit(train_images, train_labels, epochs=100)
+model.fit(train_images, train_labels, epochs=15)
 
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 

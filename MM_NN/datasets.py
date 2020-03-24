@@ -4,7 +4,7 @@ import numpy as np
 
 maxRows = 150
 
-def load_ac_attributes_labels(inputPath, acSensor):
+def load_ac_attributes_labels(inputPath, acSensor, verbose=True):
     # maxRows = 150
 
     first_iteration = True
@@ -17,7 +17,8 @@ def load_ac_attributes_labels(inputPath, acSensor):
     # for i in range(training_patients_number):
     for i in range(30):
         pat_num = '{:0>2d}'.format(i + 1)
-        print('Reading patient ' + pat_num + ' data...')
+        if verbose:
+            print('Reading patient ' + pat_num + ' data...')
         # Iterate through the 8 exercises
         for n in range(7):
             ex_number = '{:0>2d}'.format(n + 1)
@@ -78,7 +79,7 @@ def process_ac_attributes(train, test):
     # return the concatenated training and testing data
     return (trainX, testX)
 
-def load_DC_images(inputPath):
+def load_DC_images(inputPath, verbose=True):
     # maxRows = 150
 
     first_iteration = True
@@ -87,7 +88,8 @@ def load_DC_images(inputPath):
     # for i in range(training_patients_number):
     for i in range(30):
         pat_num = '{:0>2d}'.format(i + 1)
-        print('Reading patient ' + pat_num + ' data...')
+        if verbose:
+            print('Reading patient ' + pat_num + ' data...')
         # Iterate through the 8 exercises
         for n in range(7):
             ex_number = '{:0>2d}'.format(n + 1)
@@ -140,7 +142,7 @@ def load_DC_images(inputPath):
 
     return images, labels
 
-def load_PM_images(inputPath):
+def load_PM_images(inputPath, verbose=True):
     # maxRows = 150
 
     first_iteration = True
@@ -149,7 +151,8 @@ def load_PM_images(inputPath):
     # for i in range(training_patients_number):
     for i in range(30):
         pat_num = '{:0>2d}'.format(i + 1)
-        print('Reading patient ' + pat_num + ' data...')
+        if verbose:
+            print('Reading patient ' + pat_num + ' data...')
         # Iterate through the 8 exercises
         for n in range(7):
             ex_number = '{:0>2d}'.format(n + 1)

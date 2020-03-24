@@ -4,7 +4,7 @@ from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 import numpy as np
 import glob
-import cv2
+#import cv2
 import os
 
 maxRows = 150
@@ -59,14 +59,15 @@ maxRows = 150
 #     return (trainX, testX)
 
 # def load_house_images(df, inputPath):
-def load_DC_images(inputPath):
+def load_DC_images(inputPath, verbose=True):
     first_iteration = True
 
     # Iterate through the training patients
     # for i in range(training_patients_number):
     for i in range(30):
         pat_num = '{:0>2d}'.format(i + 1)
-        print('Reading patient ' + pat_num + ' data...')
+        if verbose:
+            print('Reading patient ' + pat_num + ' data...')
         # Iterate through the 8 exercises
         for n in range(7):
             ex_number = '{:0>2d}'.format(n + 1)
