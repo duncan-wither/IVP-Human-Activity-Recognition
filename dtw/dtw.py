@@ -71,7 +71,7 @@ def create_quick_map(vid_1, vid_2, path_width_percentage, other_vals=1e200):
                 # PSNR = MAX^2/MSE
                 # Higher PSNR is better, but we want lower, so we'll use 1/PSNR
                 # 1/PSNR = MSE/(MAX^2)
-                # Given max is the same for all, 1/PSNR is proportional to MSE thus kust ise MSE:
+                # Given max is the same for all, 1/PSNR is proportional to MSE thus just use MSE:
                 map_array[r_val, c_val] = (abs(np.square(img_2) - np.square(img_1))).sum() + 1.0
                 # the +1.0 is to prevent 0 values which are seen as impassible by the path-finding function.
     
