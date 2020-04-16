@@ -6,7 +6,7 @@ An example command to generate the animation would be:
 
 This is very memory intensive and can crash the computer is too many/too large images are used.
 ## Scripts
- - `Accel_Animation.py1` creates a series of images based on clusters of accelerometer data.
+ - `Accel_Animation.py` creates a series of images based on clusters of accelerometer data.
  - `Visual_DC.py` takes the output of the depth camera and makes a time lapse video.
  - `Visual_PM.py` data from the pressure mat is normalised and treated as an image, as for the depth camera the frames are put together in a time lapse video.
  - `Visual_Acc.py` prints on a 3D graph the data from the two accelerometers, based on the user input.   
