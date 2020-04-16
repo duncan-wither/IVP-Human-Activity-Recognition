@@ -1,26 +1,20 @@
 #!/usr/bin/env python
 """ test2.py
-Created by slam at 07/02/2020
-
 Description:Testing the dtw function with the accelerometers.
 """
-# LIBS
-## Default Libs
+# Libs
 import time
-
-## 3rd Party Libs
 import cv2  # opencv-python
 import numpy as np
 import pandas as pd
-
-## Custom Libs
 from dtw import *
+
 
 # Functions
 def down_sample(one_d_array, factor):
     # Get initial array
     ds_array0 = one_d_array[0::factor]
-    
+
     # add the following n values to each element
     for i in range(factor - 1):
         # making sure the arrays align
@@ -28,7 +22,7 @@ def down_sample(one_d_array, factor):
         if len(new_array) != len(ds_array0):
             new_array = np.pad(new_array, ((0, 1), (0, 0)), 'edge')
         ds_array0 = np.add(new_array, ds_array0)
-    
+
     # take the average
     return np.true_divide(ds_array0, factor)
 

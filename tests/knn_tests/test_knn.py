@@ -1,28 +1,21 @@
 #!/usr/bin/env python
 """ test_knn.py
-Created by slam at 07/02/2020
-
 Description: Simple test of knn process
 """
-# LIBS
-## Default Libs
+# Libs
 import pickle
-import sys
-
-## 3rd Party Libs
 import numpy as np
 import pandas as pd
 from scipy import stats
-
-## Custom Libs
 from dtw import dtw
+
 
 # Function
 # Downsampling function to reduce amount of accelerometer data.
 def down_sample(one_d_array, factor):
     # Get initial array
     ds_array0 = one_d_array[0::factor]
-    
+
     # add the following n values to each element
     for i in range(factor - 1):
         # making sure the arrays align
@@ -30,7 +23,7 @@ def down_sample(one_d_array, factor):
         if len(new_array) != len(ds_array0):
             new_array = np.pad(new_array, ((0, 1), (0, 0)), 'edge')
         ds_array0 = np.add(new_array, ds_array0)
-    
+
     # take the average
     return np.true_divide(ds_array0, factor)
 

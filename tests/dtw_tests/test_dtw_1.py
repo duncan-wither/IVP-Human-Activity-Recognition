@@ -1,31 +1,14 @@
 #!/usr/bin/env python
 """ test.py
-Created by slam at 07/02/2020
-
 Description: Testing the DTW function using the depth camera data.
 """
-# LIBS
-## Default Libs
+# Libs
 import pickle
-
 import cv2  # opencv-python
-## 3rd Party Libs
 import pandas as pd
-
-## Custom Libs
 from dtw import *
 
 '''
-TODO
-*1 - Create DTW function w/ two potential datasets
-*    1a - create map of the euclideian distances at each time between the two images
-*        1ai - Use the sum of the Euclian distances between the pixels
-*    1b - find shortest path from the start of both to the end of both
-*        1bi - no reverse time in either.
-         1bii- could be ways to speed this up
-*    1c - sum? the distances of the paths. Use this as the Distance Algorithm
- 2 - Create simple kNN algorithm
-
 Biblio:
 https://machinelearningmastery.com/tutorial-to-implement-k-nearest-neighbors-in-python-from-scratch/
 https://medium.com/@shachiakyaagba_41915/dynamic-time-warping-with-time-series-1f5c05fb8950
@@ -52,7 +35,7 @@ if calc_MAP:
     # MAP2 = create_quick_map(p1ex2, p2ex1, 0.2, other_vals=-0.1)
     MAP2 = create_map(p1ex2, p2ex1)
     print('Found Map 2')
-    
+
     # Saving MAPs
     f = open('MAP_dc.pckl', 'wb')
     pickle.dump([MAP1, MAP2], f)
@@ -78,12 +61,12 @@ cv2.imwrite('DTW2_dc.png', MAP2_img)
 find_path = True
 
 if find_path:
-    
+
     path1 = dtw_path(MAP1)
     print('Found Path 1')
     path2 = dtw_path(MAP2)
     print('Found Path 2')
-    
+
     f = open('PATH_dc.pckl', 'wb')
     pickle.dump([path1, path2], f)
     f.close()

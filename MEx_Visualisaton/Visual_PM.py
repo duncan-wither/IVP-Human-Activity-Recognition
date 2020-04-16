@@ -1,12 +1,13 @@
-import numpy
-import cv2
 import csv
 import os
+
+import cv2
+import numpy
 
 # Initialise vector holding temporary frame
 temp_image = numpy.zeros([16, 32])
 
-input_file_pm_path = '../MEx Dataset/Dataset/pm_1.0_1.0'
+input_file_pm_path = '../dataset/pm_1.0_1.0'
 # Ask the user the patient number
 patient_number = input('Enter the patient number (01 - 30): ')
 # Ask the user the exercise number

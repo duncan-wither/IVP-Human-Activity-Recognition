@@ -1,8 +1,9 @@
-from sklearn.preprocessing import MinMaxScaler
-import pandas as pd
 import numpy as np
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 maxRows = 150
+
 
 def load_ac_attributes_labels(inputPath, acSensor, verbose=True):
     # maxRows = 150
@@ -65,6 +66,7 @@ def load_ac_attributes_labels(inputPath, acSensor, verbose=True):
     # return the data frame
     return data, labels
 
+
 # def process_house_attributes(df, train, test)
 def process_ac_attributes(train, test):
     # initialize the column names of the continuous data
@@ -78,6 +80,7 @@ def process_ac_attributes(train, test):
 
     # return the concatenated training and testing data
     return (trainX, testX)
+
 
 def load_DC_images(inputPath, verbose=True):
     # maxRows = 150
@@ -141,6 +144,7 @@ def load_DC_images(inputPath, verbose=True):
                         labels = np.append(labels, np.ones(len(data)) * (int(ex_number) - 1))
 
     return images, labels
+
 
 def load_PM_images(inputPath, verbose=True):
     # maxRows = 150

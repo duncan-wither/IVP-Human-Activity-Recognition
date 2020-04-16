@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 venv*/
 .idea/
+dataset/
 /tests/deep_learning_tests/mixed_data_test.py.zip
 tests/deep_learning_tests/console_log.txt
 /MEx_Visualisaton/gif/frame?????.png

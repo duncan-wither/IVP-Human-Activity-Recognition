@@ -1,13 +1,14 @@
-from keras.models import Sequential
-from keras.layers.core import Dense
-from keras.layers.normalization import BatchNormalization
+from keras.layers import Flatten
+from keras.layers import Input
 from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.layers.core import Activation
+from keras.layers.core import Dense
 from keras.layers.core import Dropout
-from keras.layers import Flatten
-from keras.layers import Input
+from keras.layers.normalization import BatchNormalization
 from keras.models import Model
+from keras.models import Sequential
+
 
 def create_act_mlp(dim):
     # define our MLP network
@@ -24,6 +25,7 @@ def create_act_mlp(dim):
 
     return model
 
+
 def create_acw_mlp(dim):
     # define our MLP network
     model = Sequential()
@@ -38,6 +40,7 @@ def create_acw_mlp(dim):
     model.add(Dense(8, activation="softmax"))
 
     return model
+
 
 def create_DC_cnn(height, width, depth, filters=(16, 32, 64)):
     # initialize the input shape and channel dimension, assuming
@@ -78,6 +81,7 @@ def create_DC_cnn(height, width, depth, filters=(16, 32, 64)):
 
     # return the CNN
     return model
+
 
 def create_PM_cnn(height, width, depth, filters=(16, 32, 64)):
     # initialize the input shape and channel dimension, assuming

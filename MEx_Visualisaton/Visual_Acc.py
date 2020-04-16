@@ -1,13 +1,13 @@
 import csv
+
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 
 # Ask the user to chose between thigh or wrist accelerometer
 input_file_ac_path = input('Chose between wrist and thigh accelerometer [w or t]: ')
 if input_file_ac_path == 'w':
-    input_file_ac_path = '../MEx Dataset/Dataset/acw'
+    input_file_ac_path = '../dataset/acw'
 elif input_file_ac_path == 't':
-    input_file_ac_path = '../MEx Dataset/Dataset/act'
+    input_file_ac_path = '../dataset/act'
 # Ask the user the patient number
 patient_number = input('Enter the patient number (01 - 30): ')
 # Ask the user the exercise number

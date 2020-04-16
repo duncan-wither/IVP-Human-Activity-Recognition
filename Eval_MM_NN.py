@@ -1,16 +1,13 @@
 # import the necessary packages
-from MM_NN import datasets
-from MM_NN import models
-from sklearn.model_selection import train_test_split
+from keras.layers import concatenate
 from keras.layers.core import Dense
 from keras.models import Model
-from keras.optimizers import Adam
-from keras.layers import concatenate
-import numpy as np
-import locale
-import os
+from sklearn.model_selection import train_test_split
 
-inputPath = "MEx Dataset/Dataset/"
+from MM_NN import datasets
+from MM_NN import models
+
+inputPath = "dataset/"
 
 # ============ Loading data =================
 print("[INFO] loading thigh accelerometer attributes...")
@@ -76,3 +73,5 @@ test_loss, test_acc = model.evaluate([act_testX_attributes, acw_testX_attributes
                                      act_test_labels)
 
 print('\nTest accuracy:', test_acc)
+
+model.save("MM_pre-trained_model.h5")
