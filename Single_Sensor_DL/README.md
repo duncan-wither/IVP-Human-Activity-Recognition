@@ -18,4 +18,25 @@
  
 ##Functions
 Each module contains the same basic list of functions:
-- `Function 1` 
+ - `load_ac_attributes_labels(inputPath, verbose=True)`
+    - Accepts the path where accelerometer data is stored and a command to show the reading status
+    - Extracts and return the accelerometer data and labels
+ - `load_DC_images(inputPath, verbose=True)`
+    - Accepts the path where depth camera images are stored and a command to show the reading status
+    - Extracts and return the depth camera data and labels
+ - `load_PM_images(inputPath, verbose=True)`
+    - Accepts the path where pressure mat images are stored and a command to show the reading status
+    - Extracts and return the pressure mat data and labels
+ - `process_ac_attributes(ac_attributes)`
+    - Accepts the accelerometers attributes and performs min-max scaling
+    - Returns the scaled data
+ - `create_cnn()`
+    - Creates and returns a CNN model
+ - `create_mlp()`
+    - Creates and returns an MLP model
+ - `create_cnn(height, width, depth, filters=(16, 32, 64))`
+    - Accepts data dimensions and filters
+    - Implements and returns a CNN model
+    
+    
+    
