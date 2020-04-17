@@ -1,7 +1,7 @@
 # Multi-modal Human Activity Recognition
 Human Activity Recognition (HAR) using the [Multi-Modal Data-set](https://ieee-dataport.org/open-access/mex-multi-modal-exercise-dataset)
 
-Looks at comparing the results between a deep learning classification and kNN with DTW, as part of an assignment for 
+Looks at comparing the results between a multi-modal deep learning classification and kNN with DTW, as part of an assignment for 
 the EE581 - Image and Video Processing Class at Strathclyde University.
 
 Mario Emilio Manca and Duncan Wither
