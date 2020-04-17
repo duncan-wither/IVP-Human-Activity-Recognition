@@ -180,7 +180,7 @@ def load_PM_images(inputPath, verbose=True):
                     for d in range(31, -1, -1):
                         for e in range(0, 16):
                             data[r][d][e][0] = temp_ex_data[r][
-                                c]  # Contains the full exercise file in the form ndarray(# of rows, 12,16)
+                                c]  # Contains the full exercise file in the form ndarray(# of rows, 32,16)
                             c = c + 1
                 # If it is the first iteration initialise array and copy value
                 if first_iteration == True:
