@@ -16,7 +16,7 @@
  - `DC_CNN/` contains the depth camera CNN functionality 
  - `PM_CNN/` contains the pressure mat CNN functionality 
  
-##Functions
+## Functions
 Each module contains the same basic list of functions:
  - `load_ac_attributes_labels(inputPath, verbose=True)`
     - Accepts the path where accelerometer data is stored and a command to show the reading status
